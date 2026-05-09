@@ -17,8 +17,9 @@
 ## Використані технології
 
 - ігровий рушій з відкритим вихідним кодом, призначений для розробки
-2D та 3D ігор Godot
-- мова програмування GDScript
+2D та 3D ігор [Godot](https://godotengine.org/)
+- мова програмування [GDScript](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
 
 ## Опублікований продукт
 
+Інсталяційний пакет створеної гри можна завантажити з магазину [intch.io](http://itch.io)
