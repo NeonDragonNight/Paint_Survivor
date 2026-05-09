@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgt2241on38hm"]
+
+[ext_resource type="Script" path="res://src/xlam/node_2d.gd" id="1_em2nh"]
+[ext_resource type="Texture2D" uid="uid://cu3lfxqp4ii55" path="res://graphic/enemi textures/final_enemi.png" id="2_apnmg"]
+[ext_resource type="Script" path="res://src/xlam/sprite_2d.gd" id="2_lhg07"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_em2nh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+texture = ExtResource("2_apnmg")
+script = ExtResource("2_lhg07")
+
+[node name="Timer" type="Timer" parent="Sprite2D"]
+wait_time = 2.0
+
+[connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="_on_timer_timeout"]

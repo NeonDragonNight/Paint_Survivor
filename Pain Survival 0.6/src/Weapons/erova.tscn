@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq8skkiwrih8q"]
+
+[ext_resource type="Script" path="res://src/Weapons/erova.gd" id="1_af41g"]
+[ext_resource type="Texture2D" uid="uid://cg3q6cbtbn5w5" path="res://graphic/weapon textures/arov1.png" id="1_bp7ee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kdgu"]
+size = Vector2(64, 32)
+
+[node name="erova" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_af41g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bp7ee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3kdgu")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

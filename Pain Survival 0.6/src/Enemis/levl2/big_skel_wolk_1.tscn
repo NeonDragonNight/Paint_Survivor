@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn6m8x5wl01md"]
+
+[ext_resource type="Script" path="res://src/Enemis/levl2/big_skel_wolk_1.gd" id="1_ptkyt"]
+[ext_resource type="Texture2D" uid="uid://bf00mtw4sxx8o" path="res://graphic/enemi textures/lvl2/big skel wolk/big skel wolk1.png" id="2_nupym"]
+[ext_resource type="Texture2D" uid="uid://cf1nxjdfrd3xr" path="res://graphic/enemi textures/lvl2/big skel wolk/big skel wolk2.png" id="3_837gv"]
+[ext_resource type="Script" path="res://src/Enemis/levl1/danger_area.gd" id="4_0puqc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wi6mi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nupym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_837gv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj88h"]
+size = Vector2(123, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssd1x"]
+size = Vector2(127, 55)
+
+[node name="bigSkelWolk1" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+collision_layer = 2
+collision_mask = 7
+platform_on_leave = 2
+platform_floor_layers = 4294967280
+script = ExtResource("1_ptkyt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wi6mi")
+autoplay = "default"
+frame_progress = 0.796682
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_dj88h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500003, 4.5)
+scale = Vector2(5.85, 2.35)
+
+[node name="desp_time" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="freez_t" type="Timer" parent="."]
+
+[node name="danger_area" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("4_0puqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger_area"]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_ssd1x")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="desp_time" to="." method="_on_desp_time_timeout"]
+[connection signal="timeout" from="freez_t" to="." method="_on_freez_t_timeout"]
+[connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="danger_area" to="." method="_on_danger_area_body_exited"]

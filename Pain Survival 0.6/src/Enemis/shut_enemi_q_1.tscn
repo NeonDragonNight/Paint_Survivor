@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh8ooagi7p8h2"]
+
+[ext_resource type="Script" path="res://src/Enemis/shut_enemi_q_1.gd" id="1_5nodl"]
+[ext_resource type="Texture2D" uid="uid://bcwi74qnoddok" path="res://graphic/enemi textures/shut_enemi.png" id="1_v0y36"]
+[ext_resource type="Script" path="res://src/Enemis/danger_area.gd" id="2_d1ntc"]
+[ext_resource type="PackedScene" uid="uid://1ia4o4jh0tby" path="res://src/Enemi_weapon/enemi_turel_1.tscn" id="4_ncjs7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekvlh"]
+size = Vector2(56, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drc1g"]
+size = Vector2(64, 64)
+
+[node name="shut_enemi_q_1" type="CharacterBody2D"]
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294967294
+script = ExtResource("1_5nodl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v0y36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ekvlh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(3.2, 3.2)
+
+[node name="despavn_timer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="danger_area" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("2_d1ntc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger_area"]
+shape = SubResource("RectangleShape2D_drc1g")
+
+[node name="hp" type="Label" parent="danger_area"]
+offset_left = -32.0
+offset_top = -55.0
+offset_right = 32.0
+offset_bottom = -32.0
+metadata/_edit_use_anchors_ = true
+
+[node name="enemi_turel_1" parent="." instance=ExtResource("4_ncjs7")]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="despavn_timer" to="." method="_on_despavn_timer_timeout"]
+[connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="danger_area" to="." method="_on_danger_area_body_exited"]

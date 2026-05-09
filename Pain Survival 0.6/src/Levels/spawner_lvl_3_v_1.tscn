@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfi0sanut0ep"]
+
+[ext_resource type="Script" path="res://src/Levels/spawner_lvl_3_v_1.gd" id="1_ck651"]
+
+[sub_resource type="Curve2D" id="Curve2D_d51a3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -116, -130, 0, 0, 0, 0, 1267, -130, 0, 0, 0, 0, 1271, 741, 0, 0, 0, 0, -116, 741, 0, 0, 0, 0, -116, -132)
+}
+point_count = 5
+
+[node name="spawner_lvl3_v1" type="Path2D"]
+position = Vector2(-545, -320)
+curve = SubResource("Curve2D_d51a3")
+script = ExtResource("1_ck651")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-116, -130)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

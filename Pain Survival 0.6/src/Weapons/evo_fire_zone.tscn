@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cut3wiyk7krup"]
+
+[ext_resource type="Script" path="res://src/Weapons/evo_fire_zone.gd" id="1_4y5ib"]
+[ext_resource type="Texture2D" uid="uid://chk0vhsb1b1ec" path="res://graphic/weapon textures/evo_fire_zone.png" id="1_waa4q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sofe3"]
+size = Vector2(128, 128)
+
+[node name="evo_fire_zone" type="Area2D"]
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_4y5ib")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_waa4q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sofe3")
+
+[node name="live_time" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="damag_interval" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="live_time" to="." method="_on_live_time_timeout"]
+[connection signal="timeout" from="damag_interval" to="." method="_on_damag_interval_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6381afucrsoi"]
+
+[ext_resource type="Script" path="res://src/Enemis/levl2/ghost_1.gd" id="1_4fxyb"]
+[ext_resource type="Texture2D" uid="uid://clgcqleuocbx7" path="res://graphic/enemi textures/lvl2/ghost/ghost1.png" id="2_bxg1c"]
+[ext_resource type="Texture2D" uid="uid://bf1j5msb056ba" path="res://graphic/enemi textures/lvl2/ghost/ghost2.png" id="3_ai2kq"]
+[ext_resource type="Script" path="res://src/Enemis/levl1/danger_area.gd" id="4_2d8jf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cke4w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bxg1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ai2kq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w0ec"]
+size = Vector2(43, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lartd"]
+size = Vector2(45, 53)
+
+[node name="ghost1" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+platform_on_leave = 2
+platform_floor_layers = 4294967280
+script = ExtResource("1_4fxyb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cke4w")
+autoplay = "default"
+frame_progress = 0.848947
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, -5.5)
+shape = SubResource("RectangleShape2D_2w0ec")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.5, -5.5)
+scale = Vector2(2.25, 2.65)
+
+[node name="desp_time" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="freez_t" type="Timer" parent="."]
+
+[node name="danger_area" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("4_2d8jf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger_area"]
+position = Vector2(-2.5, -5.5)
+shape = SubResource("RectangleShape2D_lartd")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="desp_time" to="." method="_on_desp_time_timeout"]
+[connection signal="timeout" from="freez_t" to="." method="_on_freez_t_timeout"]
+[connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="danger_area" to="." method="_on_danger_area_body_exited"]

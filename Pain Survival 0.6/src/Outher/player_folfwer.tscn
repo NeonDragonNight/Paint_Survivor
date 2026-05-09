@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7fxftutvpqj7"]
+
+[ext_resource type="Script" path="res://src/Outher/player_folfwer.gd" id="1_f3u17"]
+
+[node name="player_folfwer" type="Area2D"]
+script = ExtResource("1_f3u17")

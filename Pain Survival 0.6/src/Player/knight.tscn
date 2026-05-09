@@ -1,0 +1,231 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtjyl5wi2hgbw"]
+
+[ext_resource type="Script" path="res://src/Player/knight.gd" id="1_dmsig"]
+[ext_resource type="Texture2D" uid="uid://5tt21qm0rhaj" path="res://graphic/player textures/knight/def1.png" id="2_fdvvl"]
+[ext_resource type="Texture2D" uid="uid://ceulkmlxf8fyn" path="res://graphic/player textures/knight/akt1.png" id="3_0prwi"]
+[ext_resource type="Script" path="res://src/Player/exp_colect_zone.gd" id="4_n0wo4"]
+[ext_resource type="Texture2D" uid="uid://b1115xmv8eib" path="res://graphic/icons/coin.png" id="5_y4klg"]
+[ext_resource type="Texture2D" uid="uid://c465f34xvnk4" path="res://graphic/icons/kill_counter.png" id="6_xn7oy"]
+[ext_resource type="Texture2D" uid="uid://cw4jsfvfrejle" path="res://graphic/inventory_ico/artifact_frame.png" id="7_ra1vp"]
+[ext_resource type="Texture2D" uid="uid://yqkep8oo2jod" path="res://graphic/inventory_ico/weapon_frame.png" id="8_cyrk0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlsab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0prwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fdvvl")
+}],
+"loop": true,
+"name": &"deff",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fdvvl")
+}],
+"loop": true,
+"name": &"idl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0prwi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la3e2"]
+size = Vector2(64, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1gat"]
+size = Vector2(64, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ph3i"]
+size = Vector2(66, 98)
+
+[node name="Knight" type="CharacterBody2D"]
+script = ExtResource("1_dmsig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vlsab")
+animation = &"deff"
+frame_progress = 0.0470754
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_la3e2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="damag_cykl" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="hp_bar2" type="ProgressBar" parent="."]
+modulate = Color(3.41728e-06, 0.8291, 0.368499, 1)
+offset_left = -38.0
+offset_top = -76.0
+offset_right = 38.0
+offset_bottom = -49.0
+value = 100.0
+show_percentage = false
+
+[node name="hp_bar" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -74.0
+offset_right = 32.0
+offset_bottom = -51.0
+
+[node name="culdauns" type="Node" parent="."]
+
+[node name="erova_culdaun" type="Timer" parent="culdauns"]
+wait_time = 0.5
+
+[node name="danger_zone_culdaun" type="Timer" parent="culdauns"]
+wait_time = 0.2
+
+[node name="sword_a_culdaun" type="Timer" parent="culdauns"]
+
+[node name="skil_culdaun" type="Timer" parent="culdauns"]
+wait_time = 10.0
+one_shot = true
+
+[node name="exp_bar" type="ProgressBar" parent="."]
+offset_left = -526.0
+offset_top = -322.0
+offset_right = 525.0
+offset_bottom = -295.0
+max_value = 3.0
+show_percentage = false
+
+[node name="exp_colect_zone" type="Area2D" parent="."]
+script = ExtResource("4_n0wo4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exp_colect_zone"]
+shape = SubResource("RectangleShape2D_f1gat")
+debug_color = Color(0.633023, 0.343667, 1, 0.42)
+
+[node name="Timer" type="Timer" parent="exp_colect_zone"]
+wait_time = 5.0
+
+[node name="game_timer" type="Label" parent="."]
+offset_left = -34.0
+offset_top = -295.0
+offset_right = 34.0
+offset_bottom = -272.0
+text = "0:0"
+horizontal_alignment = 1
+
+[node name="game_time" type="Timer" parent="."]
+autostart = true
+
+[node name="coin" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="coin"]
+position = Vector2(391, -274)
+texture = ExtResource("5_y4klg")
+
+[node name="coin_counter" type="Label" parent="coin"]
+offset_left = 407.0
+offset_top = -290.0
+offset_right = 491.0
+offset_bottom = -258.0
+text = "0"
+
+[node name="k_kounter" type="Sprite2D" parent="coin"]
+position = Vector2(217, -275)
+texture = ExtResource("6_xn7oy")
+
+[node name="kill_counter" type="Label" parent="coin"]
+offset_left = 233.0
+offset_top = -291.0
+offset_right = 317.0
+offset_bottom = -259.0
+text = "0"
+
+[node name="skil" type="Marker2D" parent="coin"]
+position = Vector2(-498, -186)
+
+[node name="ult" type="Marker2D" parent="coin"]
+position = Vector2(-418, -186)
+
+[node name="inventory_gui" type="Node2D" parent="."]
+position = Vector2(-509, -239)
+
+[node name="Sprite2D" type="Sprite2D" parent="inventory_gui"]
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(33, 0)
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(66, 0)
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2D4" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(99, 0)
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2D5" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(132, 0)
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2D6" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(165, 0)
+texture = ExtResource("7_ra1vp")
+
+[node name="Sprite2DWeap" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(0, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="Sprite2DWeap2" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(33, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="Sprite2DWeap3" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(66, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="Sprite2DWeap4" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(99, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="Sprite2DWeap5" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(132, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="Sprite2DWeap6" type="Sprite2D" parent="inventory_gui"]
+position = Vector2(165, -35)
+texture = ExtResource("8_cyrk0")
+
+[node name="level_counter" type="Label" parent="."]
+offset_left = -95.0
+offset_top = -321.0
+offset_right = 94.0
+offset_bottom = -298.0
+text = "Level: 0"
+horizontal_alignment = 1
+
+[node name="shild_regen" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="h_box" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="h_box"]
+shape = SubResource("RectangleShape2D_6ph3i")
+
+[connection signal="timeout" from="damag_cykl" to="." method="_on_damag_cykl_timeout"]
+[connection signal="timeout" from="culdauns/erova_culdaun" to="." method="_on_erova_culdaun_timeout"]
+[connection signal="timeout" from="culdauns/danger_zone_culdaun" to="." method="_on_danger_zone_culdaun_timeout"]
+[connection signal="timeout" from="culdauns/sword_a_culdaun" to="." method="_on_sword_a_culdaun_timeout"]
+[connection signal="timeout" from="exp_colect_zone/Timer" to="exp_colect_zone" method="_on_timer_timeout"]
+[connection signal="timeout" from="game_time" to="." method="_on_game_time_timeout"]
+[connection signal="timeout" from="shild_regen" to="." method="_on_shild_regen_timeout"]

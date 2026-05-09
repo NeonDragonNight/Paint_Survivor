@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbq0htnh2j0af"]
+
+[ext_resource type="Script" path="res://src/Enemis/levl2/dead_ent_1.gd" id="1_ejcfy"]
+[ext_resource type="Texture2D" uid="uid://dlhe5sewv3t7i" path="res://graphic/enemi textures/lvl2/ent.png" id="2_t5mn3"]
+[ext_resource type="Script" path="res://src/Enemis/levl1/danger_area.gd" id="3_brn64"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r88n0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5mn3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3u2d"]
+size = Vector2(66, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3t5n"]
+size = Vector2(68, 124)
+
+[node name="deadEnt1" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+platform_on_leave = 2
+platform_floor_layers = 4294967280
+script = ExtResource("1_ejcfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r88n0")
+autoplay = "default"
+frame_progress = 0.968194
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7)
+shape = SubResource("RectangleShape2D_l3u2d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(3.2, 3.2)
+
+[node name="desp_time" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="freez_t" type="Timer" parent="."]
+
+[node name="danger_area" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("3_brn64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger_area"]
+position = Vector2(1, 7)
+shape = SubResource("RectangleShape2D_b3t5n")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="desp_time" to="." method="_on_desp_time_timeout"]
+[connection signal="timeout" from="freez_t" to="." method="_on_freez_t_timeout"]
+[connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="danger_area" to="." method="_on_danger_area_body_exited"]

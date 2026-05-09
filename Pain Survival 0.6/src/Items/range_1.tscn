@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cekqj4x4o78a0"]
+
+[ext_resource type="Script" path="res://src/Items/range_1.gd" id="1_k181r"]
+[ext_resource type="Texture2D" uid="uid://dq4gf6ru0rxjj" path="res://graphic/inventory_ico/range_up_ico.png" id="2_fe8mv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0w67"]
+size = Vector2(32, 32)
+
+[node name="range1" type="Area2D"]
+script = ExtResource("1_k181r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fe8mv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a0w67")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ixvirld0v3k2"]
+
+[ext_resource type="Texture2D" uid="uid://di8pwbhkq1yk" path="res://graphic/enemi textures/shut_enemi_bulet.png" id="1_8owyw"]
+[ext_resource type="Script" path="res://src/Enemi_weapon/enemi_bullet.gd" id="1_dakfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03el5"]
+size = Vector2(32, 32)
+
+[node name="Bullet2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_dakfd")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_8owyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_03el5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

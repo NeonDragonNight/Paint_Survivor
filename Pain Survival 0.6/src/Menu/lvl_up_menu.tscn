@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://oup6xtmtefwj"]
+
+[ext_resource type="Script" path="res://src/Menu/lvl_up_menu.gd" id="1_y07v8"]
+[ext_resource type="Texture2D" uid="uid://bufyamsibaux6" path="res://graphic/menu textures/lvl up/lvl up1.png" id="2_0l2xr"]
+[ext_resource type="Texture2D" uid="uid://7axm7rt1x4x6" path="res://graphic/menu textures/lvl up/lvl up2.png" id="3_h4u6a"]
+[ext_resource type="Texture2D" uid="uid://cw4jsfvfrejle" path="res://graphic/inventory_ico/artifact_frame.png" id="3_khawr"]
+[ext_resource type="Texture2D" uid="uid://bvcybqyppeutj" path="res://graphic/menu textures/lvl up/but1.png" id="4_0a61n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tipky"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0l2xr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h4u6a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="lvl_up_menu" type="Node2D"]
+top_level = true
+script = ExtResource("1_y07v8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tipky")
+autoplay = "default"
+frame = 1
+frame_progress = 0.790615
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = -332.0
+offset_top = -172.0
+offset_right = 386.0
+offset_bottom = -116.0
+theme_override_colors/font_color = Color(0.00566115, 0.00566115, 0.00566115, 1)
+text = "тест1"
+icon = ExtResource("4_0a61n")
+flat = true
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(-20, 26)
+texture = ExtResource("3_khawr")
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = -334.0
+offset_top = -104.0
+offset_right = 386.0
+offset_bottom = -48.0
+theme_override_colors/font_color = Color(0.00820202, 0.00820202, 0.00820202, 1)
+text = "тест2"
+icon = ExtResource("4_0a61n")
+flat = true
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Button2"]
+position = Vector2(-20, 26)
+texture = ExtResource("3_khawr")
+
+[node name="Button3" type="Button" parent="."]
+visible = false
+offset_left = -334.0
+offset_top = -33.0
+offset_right = 386.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+text = "test3"
+icon = ExtResource("4_0a61n")
+flat = true
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Button3"]
+position = Vector2(-20, 26)
+texture = ExtResource("3_khawr")
+
+[node name="Button4" type="Button" parent="."]
+visible = false
+offset_left = -334.0
+offset_top = 37.0
+offset_right = 386.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0.00566115, 0.00566115, 0.00566115, 1)
+text = "test4"
+icon = ExtResource("4_0a61n")
+flat = true
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Button4"]
+position = Vector2(-20, 26)
+texture = ExtResource("3_khawr")
+
+[node name="Button5" type="Button" parent="."]
+visible = false
+offset_left = -354.0
+offset_top = -162.0
+offset_right = 372.0
+offset_bottom = -78.0
+theme_override_colors/font_color = Color(0.00351917, 0.00351917, 0.00351917, 1)
+text = "200 золота"
+icon = ExtResource("4_0a61n")
+flat = true
+icon_alignment = 1
+
+[node name="animation" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="timeout" from="animation" to="." method="_on_animation_timeout"]

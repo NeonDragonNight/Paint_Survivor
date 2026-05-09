@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv0hiki32hn0n"]
+
+[ext_resource type="Texture2D" uid="uid://df3lkv6sokg4w" path="res://graphic/skil_ult_ico/knight/skil1.png" id="1_8ibma"]
+[ext_resource type="Script" path="res://src/xlam/test_skil_1.gd" id="1_466vc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_icnbu"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[node name="test_skil1" type="Sprite2D"]
+texture = ExtResource("1_8ibma")
+script = ExtResource("1_466vc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = 26.0
+offset_right = 28.0
+offset_bottom = 49.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 11.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 37.0
+text = "E"
+label_settings = SubResource("LabelSettings_icnbu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="skil_culdaun" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://db6nudt8ucaf7"]
+
+[ext_resource type="Script" path="res://src/Weapons/sword_a_spawner.gd" id="1_mvgdo"]
+
+[node name="sword_a_spawner" type="Node2D"]
+script = ExtResource("1_mvgdo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="test" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="test" to="." method="_on_test_timeout"]

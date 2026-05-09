@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1kakdkygnmdp"]
+
+[ext_resource type="Script" path="res://src/Enemis/test1/test_enem_2.gd" id="1_3e1eg"]
+[ext_resource type="Texture2D" uid="uid://cu3lfxqp4ii55" path="res://graphic/enemi textures/final_enemi.png" id="2_8senj"]
+[ext_resource type="Script" path="res://src/Enemis/test1/danger_area2.gd" id="3_dsbpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w0ec"]
+size = Vector2(62, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lartd"]
+size = Vector2(64, 64)
+
+[node name="test_enem2" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+platform_on_leave = 2
+platform_floor_layers = 4294967280
+script = ExtResource("1_3e1eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8senj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2w0ec")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(3.2, 3.2)
+
+[node name="desp_time" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="freez_t" type="Timer" parent="."]
+
+[node name="danger_area" type="Area2D" parent="."]
+script = ExtResource("3_dsbpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="danger_area"]
+shape = SubResource("RectangleShape2D_lartd")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="desp_time" to="." method="_on_desp_time_timeout"]
+[connection signal="timeout" from="freez_t" to="." method="_on_freez_t_timeout"]
+[connection signal="body_entered" from="danger_area" to="." method="_on_danger_area_body_entered"]
+[connection signal="body_exited" from="danger_area" to="." method="_on_danger_area_body_exited"]

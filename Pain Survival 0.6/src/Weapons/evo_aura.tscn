@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkvul7yu6he6b"]
+
+[ext_resource type="Script" path="res://src/Weapons/evo_aura.gd" id="1_j4vtj"]
+[ext_resource type="Texture2D" uid="uid://duwj0te10q5yt" path="res://graphic/weapon textures/aura_evo.png" id="2_na3ne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0txtt"]
+size = Vector2(115, 114)
+
+[node name="evo_aura" type="Area2D"]
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_j4vtj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_na3ne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_0txtt")
+
+[node name="damag_interval" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="damag_interval" to="." method="_on_damag_interval_timeout"]

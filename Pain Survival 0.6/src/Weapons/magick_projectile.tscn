@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://kwsikkhgo11l"]
+
+[ext_resource type="Texture2D" uid="uid://7yfi0assr2bp" path="res://graphic/weapon textures/magick_projectile.png" id="1_igmpq"]
+[ext_resource type="Script" path="res://src/Weapons/magick_projectile.gd" id="1_xn6hi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37lxb"]
+radius = 16.0312
+
+[node name="magick_projectile" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xn6hi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_igmpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_37lxb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
