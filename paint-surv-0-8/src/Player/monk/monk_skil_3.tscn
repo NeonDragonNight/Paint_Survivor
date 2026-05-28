@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ra1cbp7qj3x"]
+
+[ext_resource type="Texture2D" uid="uid://dmtk8ounkotp6" path="res://graphic/skil_ult_ico/monk/skil3.png" id="1_a6ob8"]
+[ext_resource type="Script" path="res://src/Player/monk/monk_skil_3.gd" id="2_6v8q5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_icnbu"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[node name="knight_skil3" type="Sprite2D"]
+texture = ExtResource("1_a6ob8")
+script = ExtResource("2_6v8q5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = 26.0
+offset_right = 28.0
+offset_bottom = 49.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 11.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 37.0
+text = "E"
+label_settings = SubResource("LabelSettings_icnbu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="skil_culdaun" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="work_time" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="work_time" to="." method="_on_work_time_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://brh4ag1ekckvf"]
+
+[ext_resource type="Script" path="res://src/Player/monk/ult_skils/ult1p1.gd" id="1_yj2k6"]
+
+[sub_resource type="Curve2D" id="Curve2D_x4amu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -100, 0, 0, 0, 0, 70, -70, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 70, 70, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, -70, 70, 0, 0, 0, 0, -100, 0, 0, 0, 0, 0, -70, -70, 0, 0, 0, 0, 0, -100)
+}
+point_count = 9
+
+[node name="spainer_spawner" type="Path2D"]
+curve = SubResource("Curve2D_x4amu")
+script = ExtResource("1_yj2k6")

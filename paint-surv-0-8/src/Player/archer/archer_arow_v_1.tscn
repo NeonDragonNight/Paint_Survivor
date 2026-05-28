@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://wjei7n5aabo3"]
+
+[ext_resource type="Script" path="res://src/Player/archer/archer_arow_v_1.gd" id="1_fk4el"]
+[ext_resource type="Texture2D" uid="uid://b5av2tk1qxk55" path="res://graphic/weapon textures/big_arow.png" id="2_f07o0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0x3a"]
+size = Vector2(126.5, 23)
+
+[node name="archer_arow_v1" type="Area2D"]
+top_level = true
+scale = Vector2(2, 1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_fk4el")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_f07o0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.25, -1.5)
+shape = SubResource("RectangleShape2D_q0x3a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

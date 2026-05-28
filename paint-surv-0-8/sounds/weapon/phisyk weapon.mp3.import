@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://caebm8rl2axyf"
+path="res://.godot/imported/phisyk weapon.mp3-712a63d4a8bc2f1a84eec8f3cc278135.mp3str"
+
+[deps]
+
+source_file="res://sounds/weapon/phisyk weapon.mp3"
+dest_files=["res://.godot/imported/phisyk weapon.mp3-712a63d4a8bc2f1a84eec8f3cc278135.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

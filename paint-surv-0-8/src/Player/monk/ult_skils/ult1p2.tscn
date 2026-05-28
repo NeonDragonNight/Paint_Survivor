@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0q6av3woe32"]
+
+[ext_resource type="Script" path="res://src/Player/monk/ult_skils/ult1p2.gd" id="1_aibyd"]
+[ext_resource type="PackedScene" uid="uid://bufcu7v7yomv7" path="res://src/Player/monk/ult_skils/ult1p3.tscn" id="2_df1cd"]
+
+[node name="spiner_v2" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_aibyd")
+
+[node name="spiner" parent="." instance=ExtResource("2_df1cd")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

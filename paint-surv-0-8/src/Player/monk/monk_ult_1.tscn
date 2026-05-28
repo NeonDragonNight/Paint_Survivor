@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://d25dmjja60opb"]
+
+[ext_resource type="Texture2D" uid="uid://c7bfrmv06spt5" path="res://graphic/skil_ult_ico/monk/ult1.png" id="1_ucmyc"]
+[ext_resource type="Script" path="res://src/Player/monk/monk_ult_1.gd" id="2_ynofx"]
+[ext_resource type="PackedScene" uid="uid://brh4ag1ekckvf" path="res://src/Player/monk/ult_skils/ult1p1.tscn" id="3_wcql8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1wv1e"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[node name="monk_ult1" type="Sprite2D"]
+texture = ExtResource("1_ucmyc")
+script = ExtResource("2_ynofx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = 26.0
+offset_right = 28.0
+offset_bottom = 49.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 11.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 37.0
+text = "Q"
+label_settings = SubResource("LabelSettings_1wv1e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -39.0
+offset_top = -25.0
+offset_right = -25.0
+offset_bottom = 25.0
+max_value = 2.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 8.0
+offset_bottom = 59.0
+
+[node name="spainer_spawner" parent="." instance=ExtResource("3_wcql8")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

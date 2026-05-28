@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://e35mj5xq6q3n"]
+
+[ext_resource type="Script" path="res://src/Weapons/evo_magick_crystal.gd" id="1_1u83m"]
+[ext_resource type="Texture2D" uid="uid://cfu3sacv1gb0h" path="res://graphic/weapon textures/evo_magick_crystal.png" id="1_mowr0"]
+[ext_resource type="AudioStream" uid="uid://b7eigky08hfuo" path="res://sounds/weapon/magick1.mp3" id="3_6163t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3k64"]
+radius = 696.011
+
+[node name="evo_magick_crystal" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1u83m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mowr0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f3k64")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="live_time" type="Timer" parent="."]
+wait_time = 12.0
+autostart = true
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6163t")
+volume_db = -10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="live_time" to="." method="_on_live_time_timeout"]

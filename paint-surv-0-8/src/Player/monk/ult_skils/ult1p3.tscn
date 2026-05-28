@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bufcu7v7yomv7"]
+
+[ext_resource type="Script" path="res://src/Player/monk/ult_skils/ult1p3.gd" id="1_xhrq8"]
+[ext_resource type="Texture2D" uid="uid://c6ygdf5e06gpn" path="res://graphic/skil_ult_textures/monk/spiner.png" id="2_4g2uk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jm171"]
+size = Vector2(32, 32)
+
+[node name="spiner" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xhrq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4g2uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jm171")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

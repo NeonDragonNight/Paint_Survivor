@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://hx7ppfrt4eg6"]
+
+[ext_resource type="Texture2D" uid="uid://cg3q6cbtbn5w5" path="res://graphic/weapon textures/arov1.png" id="1_31aaq"]
+[ext_resource type="Script" path="res://src/Weapons/turel_arow_v_2.gd" id="1_x7uhm"]
+[ext_resource type="AudioStream" uid="uid://6le31757jj6l" path="res://sounds/enemy/hurt2.mp3" id="3_84mwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mxvp"]
+size = Vector2(64, 32)
+
+[node name="turel_arow_v2" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_x7uhm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_31aaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4mxvp")
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_84mwi")
+max_polyphony = 100
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

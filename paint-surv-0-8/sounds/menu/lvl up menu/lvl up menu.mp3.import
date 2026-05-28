@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmx8v7n1eyxv"
+path="res://.godot/imported/lvl up menu.mp3-cd7230fb984645f25a70808118625c32.mp3str"
+
+[deps]
+
+source_file="res://sounds/menu/lvl up menu/lvl up menu.mp3"
+dest_files=["res://.godot/imported/lvl up menu.mp3-cd7230fb984645f25a70808118625c32.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

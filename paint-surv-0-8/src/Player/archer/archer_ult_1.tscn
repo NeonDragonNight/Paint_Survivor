@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://d25dmjja60opb"]
+
+[ext_resource type="Texture2D" uid="uid://xow8e6daxytq" path="res://graphic/skil_ult_ico/archer/ult1.png" id="1_tvopv"]
+[ext_resource type="Script" path="res://src/Player/archer/archer_ult_1.gd" id="2_d6opt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1wv1e"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.699653, 0.699653, 0.699653, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_x4amu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -100, 0, 0, 0, 0, 70, -70, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 70, 70, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, -70, 70, 0, 0, 0, 0, -100, 0, 0, 0, 0, 0, -70, -70, 0, 0, 0, 0, 0, -100)
+}
+point_count = 9
+
+[node name="knight_ult1" type="Sprite2D"]
+texture = ExtResource("1_tvopv")
+script = ExtResource("2_d6opt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = 26.0
+offset_right = 28.0
+offset_bottom = 49.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 11.0
+offset_top = -2.0
+offset_right = 38.0
+offset_bottom = 37.0
+text = "Q"
+label_settings = SubResource("LabelSettings_1wv1e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -39.0
+offset_top = -25.0
+offset_right = -25.0
+offset_bottom = 25.0
+max_value = 2.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 8.0
+offset_bottom = 59.0
+
+[node name="ult2_Path2D" type="Path2D" parent="."]
+scale = Vector2(3, 3)
+curve = SubResource("Curve2D_x4amu")
+
+[node name="ult2_PathFollow2D" type="PathFollow2D" parent="ult2_Path2D"]
+position = Vector2(0, -100)
+rotation = 0.404892
+rotates = false
+
+[node name="Marker2D" type="Marker2D" parent="ult2_Path2D/ult2_PathFollow2D"]
+
+[node name="shut" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="work_time" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="shut" to="." method="_on_shut_timeout"]
+[connection signal="timeout" from="work_time" to="." method="_on_work_time_timeout"]

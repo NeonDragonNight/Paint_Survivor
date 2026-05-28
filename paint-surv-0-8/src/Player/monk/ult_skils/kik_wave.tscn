@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1wwknjv4nfyx"]
+
+[ext_resource type="Texture2D" uid="uid://coqmemnw84avw" path="res://graphic/skil_ult_textures/monk/kik.png" id="1_3kirb"]
+[ext_resource type="Script" path="res://src/Player/monk/ult_skils/kik_wave.gd" id="1_dn4bk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtcqd"]
+radius = 16.0312
+
+[node name="kik_wave" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dn4bk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_3kirb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wtcqd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
