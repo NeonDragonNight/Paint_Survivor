@@ -69,6 +69,18 @@ func _ready():
 	
 	fullscreen_tougle()
 	$"main button/HSlider".value = sound_volume
+	level_show_hide()
+
+
+func level_show_hide():
+	if Complite_levels["lvl1"]:
+		$"levl selector/lock_lvl2".hide()
+	else :
+		$"levl selector/lock_lvl2".show()
+	if Complite_levels["lvl2"]:
+		$"levl selector/lock_lvl3".hide()
+	else :
+		$"levl selector/lock_lvl3".show()
 
 
 func complite_level(level):
@@ -346,10 +358,10 @@ var fullscreen = false
 func fullscreen_tougle():
 	if not fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		$"main button/screen_mode".texture_normal = full_scr_img
+		$"main button/screen_mode".icon = full_scr_img
 	else :
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		$"main button/screen_mode".texture_normal = norm_scr_img
+		$"main button/screen_mode".icon = norm_scr_img
 
 
 func _on_screen_mode_pressed():
@@ -357,12 +369,13 @@ func _on_screen_mode_pressed():
 	var mode = DisplayServer.window_get_mode()
 	if mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		$"main button/screen_mode".texture_normal = full_scr_img
+		$"main button/screen_mode".icon = full_scr_img
 		fullscreen = false
 	else :
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		$"main button/screen_mode".texture_normal = norm_scr_img
+		$"main button/screen_mode".icon = norm_scr_img
 		fullscreen = true
+		
 	save_data()
 
 
@@ -380,3 +393,15 @@ func _on_h_slider_value_changed(value):
 func _on_sound_resrt_pressed():
 	$sounds/button_able.play()
 	$"main button/HSlider".value = 0
+
+
+func _on_close_about_pressed():
+	$sounds/button_able.play()
+	$about.hide()
+	$"main button".show()
+
+
+func _on_about_pressed():
+	$sounds/button_able.play()
+	$about.show()
+	$"main button".hide()

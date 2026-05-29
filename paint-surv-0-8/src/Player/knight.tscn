@@ -76,6 +76,7 @@ value = 100.0
 show_percentage = false
 
 [node name="hp_bar" type="Label" parent="."]
+visible = false
 offset_left = -32.0
 offset_top = -74.0
 offset_right = 32.0

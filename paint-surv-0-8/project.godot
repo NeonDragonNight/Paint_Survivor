@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="paint-surv-0-8"
+config/version="0.8"
 run/main_scene="res://src/Menu/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://graphic/icon.png"
 
 [display]
 

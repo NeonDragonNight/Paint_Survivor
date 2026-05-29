@@ -154,15 +154,8 @@ func get_input():
 		
 	if input_direction != Vector2.ZERO:
 		last_inp_dir = input_direction
-	
-	
-	#Ubrat-------------------------------------------------------------------
-	if Input.is_action_pressed("shift"):
-		velocity = input_direction * (speed * 4)
-	elif Input.is_action_pressed("ctrl"):
-		velocity = input_direction * (speed / 4)
-	#Ubrat-------------------------------------------------------------------
-	else: velocity = input_direction * (speed)
+
+	velocity = input_direction * (speed)
 	
 	
 	if velocity.length() > 0.0:
@@ -172,11 +165,6 @@ func get_input():
 	
 	if Input.is_action_just_pressed("skil"):
 		$coin/skil.get_child(0).akt()
-	
-	#Ubrat-------------------------------------------------------------------
-	if Input.is_action_just_pressed("atak"):
-		add_ult_energy()
-	#Ubrat-------------------------------------------------------------------
 	
 	
 	if Input.is_action_just_pressed("ult"):

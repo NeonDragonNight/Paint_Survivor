@@ -94,7 +94,13 @@ func vawe():
 		14:
 			for i in range(2):
 				spawn_mob(mob_list[1])
-		15:
+		15, 16, 17, 18:
+			for i in range(12):
+				spawn_mob(mob_list[1])
+		19:
+			for i in range(2):
+				spawn_mob(mob_list[3])
+		20:
 			if sec == 1: #End---------------
 				spawn_mob(mob_list[0])
 				end_portal()
