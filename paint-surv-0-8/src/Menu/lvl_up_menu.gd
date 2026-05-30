@@ -20,8 +20,8 @@ var inventory_artifacts
 
 var selected_items
 
-var inventory_siz = 2
-var artifact_invent_size = 2
+var inventory_siz = 6
+var artifact_invent_size = 6
 
 #var all_items = [
 	#{"name": "Turel", "level": 0, "id": "0", "path": "res://src/Weapons/turel.tscn", "node": null},

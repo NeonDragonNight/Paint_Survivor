@@ -23,8 +23,8 @@ var inventory_artifacts
 
 var selected_items
 
-var inventory_siz = 2
-var artifact_invent_size = 2
+var inventory_siz = 6
+var artifact_invent_size = 6
 
 var ico_list = []
 
@@ -160,7 +160,7 @@ func _on_body_entered(body):
 			var rand = randi_range(1, 100)
 			#print("rand - ", rand)
 			var item_col = 1
-			if rand > 0:#95:
+			if rand > 97:
 				item_col = 5
 			elif rand > 75:
 				item_col = 3
