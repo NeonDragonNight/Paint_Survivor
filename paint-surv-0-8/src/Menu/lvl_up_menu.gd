@@ -1,15 +1,11 @@
 extends Node2D
 
-
-#@onready var player_node = get_node("..")
 var player_node
 
 
 var selecteble_item = [99, 99, 99, 99]
 
 var active_buttons = 0
-
-#var test
 
 var item1_name
 
@@ -23,44 +19,11 @@ var selected_items
 var inventory_siz = 6
 var artifact_invent_size = 6
 
-#var all_items = [
-	#{"name": "Turel", "level": 0, "id": "0", "path": "res://src/Weapons/turel.tscn", "node": null},
-	#{"name": "Aura", "level": 0, "id": "1", "path": "res://src/Weapons/aura.tscn", "node": null},
-#]
-
 
 func _ready():
 	$AudioStreamPlayer.volume_db = player_node.sound_volume - 8
 	$button_able.volume_db = player_node.sound_volume
-	#Engine.time_scale = 0
 	get_tree().paused = true
-	
-	#print()
-	#print()
-	
-	#print("all_items")
-	#print(all_items)
-	#print("inventory")
-	#print(inventory)
-	
-	#print(all_items)
-	#print(inventory)
-	#print(inventory_artifacts)
-	#print()
-	
-	#for item in inventory:
-		#print(item.name)
-		#print(item.level)
-	
-	#print(inventory_artifacts)
-	
-	#print(test[1])
-	#print()
-	
-	#print(item_lvl_list[0])
-	#print(weapon_names_list[1])
-	#print(item_lvl_list[1])
-
 	
 	selected_items = get_random_items(2)
 	
@@ -206,35 +169,32 @@ func add_or_up(item_idex):
 					player_node.all_items = all_items
 					player_node.inventory_artifacts = inventory_artifacts
 			
-		if choiset_item.name == "Hp up":#v
+		if choiset_item.name == "Hp up":
 			player_node.healt += 10
 			player_node.max_healt += 10
-		if choiset_item.name == "Range up":#v
+		if choiset_item.name == "Range up":
 			player_node.atak_range += 0.1
-		if choiset_item.name == "Speed up":#v
+		if choiset_item.name == "Speed up":
 			player_node.bonus_speed += 0.15
-		if choiset_item.name == "Colect range up":#v
+		if choiset_item.name == "Colect range up":
 			player_node.colect_range += 0.1
 		
-		if choiset_item.name == "Expe bonus":#v
+		if choiset_item.name == "Expe bonus":
 			player_node.exp_bonus += 0.15
-		if choiset_item.name == "Amount bonus":#v
+		if choiset_item.name == "Amount bonus":
 			player_node.amount += 1
-		if choiset_item.name == "Cooldown up":#v
+		if choiset_item.name == "Cooldown up":
 			player_node.cooldown += 0.15
-		if choiset_item.name == "Armor up":#v
+		if choiset_item.name == "Armor up":
 			player_node.armor_bonus += 0.5
 		
-		if choiset_item.name == "Duration up":#x
+		if choiset_item.name == "Duration up":
 			player_node.duration += 0.15
-		if choiset_item.name == "Might up":#v
+		if choiset_item.name == "Might up":
 			player_node.bonus_might += 0.20
 		
 		player_node.pasyv_stat_up()
 	
-	
-	
-	#Engine.time_scale = 1
 	get_tree().paused = false
 	player_node.lvl_up_menu_activ = false
 	player_node.player_level_up()
@@ -243,41 +203,7 @@ func add_or_up(item_idex):
 	
 	
 func get_random_items(count: int) -> Array:
-	# 1. Фильтруем доступные предметы
 	var available_items = []
-	
-	#if inventory.size() < 2:
-		#for item in all_items:
-			#
-			#if item.level < 6:
-				#available_items.append(item)
-	#
-	#else :
-		#for item in inventory:
-		##var in_inventory = inventory.any(func(inv_item): return inv_item.name == item.name)
-			#if item.level < 6:
-				#available_items.append(item)
-	
-	
-	#for item in all_items:
-		#if item.weapon:
-			#if inventory.size() < 2:
-				#if item.level < 6:
-					#available_items.append(item)
-			#else :
-				#for item2 in inventory:
-					#if item2.level < 6:
-						#available_items.append(item2)
-		#
-		#else:
-			#if inventory_artifacts.size() < 2:
-				#if item.level < 6:
-					#available_items.append(item)
-			#else :
-				#for item3 in inventory_artifacts:
-					#if item3.level < 6:
-						#available_items.append(item3)
-	
 	
 	if inventory.size() < inventory_siz:
 		for item in all_items:
@@ -294,32 +220,18 @@ func get_random_items(count: int) -> Array:
 			if ! item.weapon:
 				if item.level < 6:
 					available_items.append(item)
-	#elif inventory_artifacts.size() >= 2:
 	else:
 		for item3 in inventory_artifacts:
 			if item3.level < 6:
 				available_items.append(item3)
-						
-	
-	#Test func
-	#for test in available_items:
-		#print(test.name)
 	
 	
 	available_items.shuffle()
 	
 	return available_items.slice(0, min(count, available_items.size()))
-	
-	#Test func
-	#var test_items = []
-	#for ttest in all_items:
-		#if ttest.id == 5:
-			#test_items.append(ttest)
-	#return test_items
 
 
 func _on_button_5_pressed():
-	#Engine.time_scale = 1
 	get_tree().paused = false
 	
 	$button_able.play()

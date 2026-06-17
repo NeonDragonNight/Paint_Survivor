@@ -265,7 +265,8 @@ func lvl_up_menu_spawn():
 	
 	expe -= need_to_lvl_up
 	
-	need_to_lvl_up *= 1.1
+	need_to_lvl_up += 1
+	need_to_lvl_up *= 1.2
 	
 	$exp_bar.value = expe
 	$exp_bar.max_value = need_to_lvl_up

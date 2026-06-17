@@ -32,9 +32,7 @@ var sound_volume = 0
 
 
 func _on_body_entered(body):
-	
 	if body.has_method("player"):
-		#print(body)
 		sound_volume = body.sound_volume
 		
 		var inventori = body.inventory
@@ -91,10 +89,6 @@ func _on_body_entered(body):
 									evo_hepend = true
 					
 				if inventori[i].name == "Sword a":
-					#var item_node = inventori[i].node
-					#item_node.queue_free()
-					#var addit = evo_list[3]
-					#additem(addit, body, i)
 					if inventori[i].level == 6:
 						for j in range(inventory_artifacts.size()):
 							if inventory_artifacts[j].name == "Armor up":
@@ -158,7 +152,6 @@ func _on_body_entered(body):
 		if ! evo_hepend:
 			#Kol items##############################
 			var rand = randi_range(1, 100)
-			#print("rand - ", rand)
 			var item_col = 1
 			if rand > 97:
 				item_col = 5
@@ -172,31 +165,6 @@ func _on_body_entered(body):
 			
 			#Add items##############################
 			for item in selected_items:
-				
-				
-				#var artifact_new = 0
-				#var weapon_new = 0
-				#if item["weapon"]:
-					##If new ----------------------------------------------------------
-					#if ! inventory.has(item):
-						#if (inventory.size() + weapon_new) < inventory_siz:
-							#weapon_new += 1
-							#add_or_up(item)
-							#ico_list.append(item)
-					#else :
-						#add_or_up(item)
-						#ico_list.append(item)
-				#else :
-					##If new ----------------------------------------------------------
-					#if ! inventory_artifacts.has(item):
-						#if (inventory.size() + artifact_new) < artifact_invent_size:
-							#artifact_new += 1
-							#add_or_up(item)
-							#ico_list.append(item)
-					#else :
-						#add_or_up(item)
-						#ico_list.append(item)
-				
 				add_or_up(item)
 				ico_list.append(item)
 			
@@ -205,24 +173,8 @@ func _on_body_entered(body):
 		new_chest_menu.ico_list = ico_list
 		new_chest_menu.global_transform = global_transform
 		new_chest_menu.player_node = player_node
-		
-		#add_child(new_chest_menu)
+
 		add_sibling(new_chest_menu)
-			#Add items##############################
-		#Not Rrdy#############################
-			
-				
-				#var addit = evo_list[0]
-				#addit.level += 1
-				#body.inventory[i] = addit
-				#
-				#var item1 = addit.path
-				#var item : PackedScene = load(item1)
-				#var new_item = item.instantiate()
-				#body.add_child(new_item)
-			#
-				#body.inventori_weapon_gui_change(addit, i+1)
-		
 		
 		queue_free()
 
@@ -306,28 +258,28 @@ func add_or_up(selected_ite):
 					player_node.all_items = all_items
 					player_node.inventory_artifacts = inventory_artifacts
 			
-		if choiset_item.name == "Hp up":#v
+		if choiset_item.name == "Hp up":
 			player_node.healt += 10
 			player_node.max_healt += 10
-		if choiset_item.name == "Range up":#v
+		if choiset_item.name == "Range up":
 			player_node.atak_range += 0.1
-		if choiset_item.name == "Speed up":#v
+		if choiset_item.name == "Speed up":
 			player_node.bonus_speed += 0.1
-		if choiset_item.name == "Colect range up":#v
+		if choiset_item.name == "Colect range up":
 			player_node.colect_range += 0.1
 		
-		if choiset_item.name == "Expe bonus":#v
+		if choiset_item.name == "Expe bonus":
 			player_node.exp_bonus += 0.15
-		if choiset_item.name == "Amount bonus":#v
+		if choiset_item.name == "Amount bonus":
 			player_node.amount += 1
-		if choiset_item.name == "Cooldown up":#v
+		if choiset_item.name == "Cooldown up":
 			player_node.cooldown += 0.15
-		if choiset_item.name == "Armor up":#v
+		if choiset_item.name == "Armor up":
 			player_node.armor_bonus += 0.5
 		
-		if choiset_item.name == "Duration up":#x
+		if choiset_item.name == "Duration up":
 			player_node.duration += 0.15
-		if choiset_item.name == "Might up":#v
+		if choiset_item.name == "Might up":
 			player_node.might += 0.20
 		
 		player_node.pasyv_stat_up()
@@ -340,14 +292,11 @@ func add_or_up(selected_ite):
 
 
 func get_random_items(count: int) -> Array:
-	# 1. Фильтруем доступные предметы
 	var available_items = []
-	
 	
 	var artifact_new = 0
 	var weapon_new = 0
-	
-	#V3##############################################################################
+
 	var all_items_shufl = []
 	
 	for item in all_items:
@@ -373,68 +322,7 @@ func get_random_items(count: int) -> Array:
 	for item3 in inventory_artifacts:
 		if item3.level < 6:
 			available_items.append(item3)
-	#V3##############################################################################
-	
-	
-	#V2##############################################################################
-	#if (inventory.size() + weapon_new) < inventory_siz:
-		#for item in all_items:
-			#if item.weapon:
-				#if ! inventory.has(item):
-					#if item.level < 6:
-						#weapon_new += 1
-						#available_items.append(item)
-	#for item2 in inventory:
-		#if item2.level < 6:
-			#available_items.append(item2)
-	#
-	#
-	#if (inventory_artifacts.size() + artifact_new) < artifact_invent_size:
-		#for item in all_items:
-			#if ! item.weapon:
-				#if ! inventory_artifacts.has(item):
-					#if item.level < 6:
-						#artifact_new += 1
-						#available_items.append(item)
-	#for item3 in inventory_artifacts:
-		#if item3.level < 6:
-			#available_items.append(item3)
-	#V2##############################################################################
-	
-	
-	#V1##############################################################################
-	#if inventory.size() < inventory_siz:
-		#for item in all_items:
-			#if item.weapon:
-				#if item.level < 6:
-					#available_items.append(item)
-	#else :
-		#for item2 in inventory:
-			#if item2.level < 6:
-				#available_items.append(item2)
-			
-	#if inventory_artifacts.size() < artifact_invent_size:
-		#for item in all_items:
-			#if ! item.weapon:
-				#if item.level < 6:
-					#available_items.append(item)
-	##elif inventory_artifacts.size() >= 2:
-	#else:
-		#for item3 in inventory_artifacts:
-			#if item3.level < 6:
-				#available_items.append(item3)
-	#V1##############################################################################
-	
-	
-	
-	# 2. Перемешиваем список
+
 	available_items.shuffle()
-	
-	
-	##Test func
-	#for test in available_items:
-		#print(test.name)
-	#print("###############################################")
-	
-	# 3. Берём первые N элементов
+
 	return available_items.slice(0, min(count, available_items.size()))

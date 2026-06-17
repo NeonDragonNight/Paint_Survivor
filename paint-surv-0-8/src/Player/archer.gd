@@ -261,7 +261,8 @@ func lvl_up_menu_spawn():
 	
 	expe -= need_to_lvl_up
 	
-	need_to_lvl_up *= 1.1
+	need_to_lvl_up += 1
+	need_to_lvl_up *= 1.2
 	
 	$exp_bar.value = expe
 	$exp_bar.max_value = need_to_lvl_up
@@ -428,11 +429,6 @@ func player():
 
 func _on_shild_regen_timeout():
 	shild_hp = max_shild_hp
-
-
-#func _on_timer_timeout():
-	#$coin/skil.modulate = Color(1, 1, 1)
-	#$coin/ult.modulate = Color(1, 1, 1)
 
 
 func add_ult_energy():

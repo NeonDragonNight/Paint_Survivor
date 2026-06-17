@@ -1093,6 +1093,7 @@ scale = Vector2(1.05161, 0.852631)
 texture = ExtResource("14_th1nd")
 
 [node name="main button" type="Node2D" parent="."]
+visible = false
 
 [node name="start" type="Button" parent="main button"]
 offset_left = 77.0

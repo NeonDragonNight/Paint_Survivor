@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="paint-surv-0-8"
+config/name="paint-surv-0-9"
 config/version="0.8"
 run/main_scene="res://src/Menu/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
